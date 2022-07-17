@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TripController;
 use Inertia\Inertia;
 
 /*
@@ -15,11 +16,9 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Index');
-});
+Route::get('/', [TripController::class, 'index']);
 
-Route::get('/poop', function () {
+Route::get('/welcome', function () {
     return Inertia::render('Welcome');
 });
 
