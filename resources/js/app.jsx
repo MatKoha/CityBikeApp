@@ -1,4 +1,5 @@
 import './bootstrap';
+import './IconLibrary';
 
 import React from 'react';
 import { render } from 'react-dom';
