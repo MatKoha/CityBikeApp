@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { Inertia } from '@inertiajs/inertia';
@@ -149,5 +150,13 @@ const Index = ({ data }) => {
     </div>
   )
 }
+
+Index.propTypes = {
+  data: PropTypes.object.isRequired,
+}
+
+Index.defaultProps = {};
+
+Index.displayName = 'Index';
 
 export default Index;
