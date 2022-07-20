@@ -30,8 +30,8 @@ class StationSeeder extends Seeder
                     'name_en' => $data[4],
                     'address_fi' => $data[5],
                     'address_swe' => $data[6],
-                    'city_fi' => $data[7],
-                    'city_swe' => $data[8],
+                    'city_fi' => $data[7] != ' ' ? $data[7] : 'Helsinki', // Empty string = hki
+                    'city_swe' =>  $data[8] != ' ' ? $data[8] : 'Helsingfors',
                     'operator' => $data[9],
                     'capacity' => $data[10],
                     'long' => $data[11],
