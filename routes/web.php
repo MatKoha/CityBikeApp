@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TripController;
+use App\Http\Controllers\StationController;
 use Inertia\Inertia;
 
 /*
@@ -16,11 +17,13 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', [TripController::class, 'index']);
-
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return Inertia::render('Welcome');
 });
+
+Route::get('/trips', [TripController::class, 'index']);
+
+Route::get('/stations', [StationController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

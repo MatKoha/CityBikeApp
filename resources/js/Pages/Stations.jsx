@@ -7,7 +7,7 @@ import { InertiaProgress } from '@inertiajs/progress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMediaQuery } from 'react-responsive';
 
-const Index = ({ data }) => {
+const Stations = ({ data }) => {
   const isBigScreen = useMediaQuery({ query: '(min-width: 600px)' });
   InertiaProgress.init({
     color: 'red',
@@ -15,51 +15,29 @@ const Index = ({ data }) => {
   })
   const columns = [
     {
-      name: 'Departure',
-      selector: row => row.departure,
-      format: row =>
-        <div class='text-center'>
-          <div>{dayjs(row.departure).format('DD.MM.YYYY')}</div>
-          <div>{dayjs(row.departure).format('HH:mm')}</div>
-        </div>,
+      name: 'Station',
+      selector: row => row.name_en,
       sortable: true,
     },
     {
-      name: 'Return',
-      selector: row => row.return,
-      format: row =>
-        <div class='text-center'>
-          <div>{dayjs(row.return).format('DD.MM.YYYY')}</div>
-          <div>{dayjs(row.return).format('HH:mm')}</div>
-        </div>,
+      name: 'Capacity',
+      selector: row => row.capacity,
       sortable: true,
     },
     {
-      name: 'Departure station',
-      selector: row => row.departure_station_name,
+      name: 'Address',
+      selector: row => row.address_fi,
       sortable: true,
     },
     {
-      name: 'Return station',
-      selector: row => row.return_station_name,
+      name: 'City',
+      selector: row => row.city_fi,
       sortable: true,
     },
     {
-      name: 'Duration',
-      selector: row => row.duration,
-      format: row => {
-        const minutes = (Math.floor(row.duration / 60));
-        const seconds = (row.duration - minutes * 60);
-        return `${minutes}m ${seconds}s`
-      },
-      sortable: true,
-    },
-    {
-      name: 'Distance covered',
-      selector: row => row.covered_distance,
-      format: row => `${parseFloat(row.covered_distance / 1000).toFixed(2)} km`,
-      sortable: true,
-    },
+      name: 'Location',
+      selector: row => `${row.lat} ${row.long}`
+    }
   ]
 
   const smallScreenColumns = [
@@ -151,12 +129,12 @@ const Index = ({ data }) => {
   )
 }
 
-Index.propTypes = {
+Stations.propTypes = {
   data: PropTypes.object.isRequired,
 }
 
-Index.defaultProps = {};
+Stations.defaultProps = {};
 
-Index.displayName = 'Index';
+Stations.displayName = 'Stations';
 
-export default Index;
+export default Stations;

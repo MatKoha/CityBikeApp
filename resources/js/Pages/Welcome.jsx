@@ -55,12 +55,7 @@ export default function Welcome(props) {
                                     </svg>
 
                                     <div className="ml-4 text-lg leading-7 font-semibold">
-                                        <a
-                                            href="https://laravel.com/docs"
-                                            className="underline text-gray-900 dark:text-white"
-                                        >
-                                            Documentation
-                                        </a>
+                                        <Link href="/trips" class="underline text-gray-900 dark:text-white">Trips</Link>
                                     </div>
                                 </div>
 
@@ -88,13 +83,8 @@ export default function Welcome(props) {
                                         <path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                     </svg>
 
-                                    <div className="ml-4 text-lg leading-7 font-semibold">
-                                        <a
-                                            href="https://laracasts.com"
-                                            className="underline text-gray-900 dark:text-white"
-                                        >
-                                            Laracasts
-                                        </a>
+                                    <div class="ml-4 text-lg leading-7 font-semibold">
+                                        <Link href="/stations" class="underline text-gray-900 dark:text-white">Stations</Link>
                                     </div>
                                 </div>
 

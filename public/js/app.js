@@ -17973,21 +17973,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
 
 
 
 
 
 var Header = function Header() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-    "class": "w-full p-4 bg-[#333] flex text-4xl font-bold text-[#fcbd1a]",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
-      icon: "bicycle"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-      "class": "ml-4",
-      children: "CityBike App"
-    })]
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    "class": "w-full bg-[#333]",
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+      href: "/",
+      "class": "p-6 inline-flex text-4xl font-bold text-[#fcbd1a]",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_1__.FontAwesomeIcon, {
+        icon: "bicycle"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        "class": "ml-4",
+        children: "CityBike App"
+      })]
+    })
   });
 };
 
@@ -19122,9 +19128,194 @@ function Dashboard(props) {
 
 /***/ }),
 
-/***/ "./resources/js/Pages/Index.jsx":
+/***/ "./resources/js/Pages/Stations.jsx":
+/*!*****************************************!*\
+  !*** ./resources/js/Pages/Stations.jsx ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_data_table_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-data-table-component */ "./node_modules/react-data-table-component/dist/index.cjs.js");
+/* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
+/* harmony import */ var _inertiajs_progress__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @inertiajs/progress */ "./node_modules/@inertiajs/progress/dist/index.js");
+/* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-responsive */ "./node_modules/react-responsive/dist/react-responsive.js");
+/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_responsive__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+
+
+
+
+
+
+
+
+
+var Stations = function Stations(_ref) {
+  var data = _ref.data;
+  var isBigScreen = (0,react_responsive__WEBPACK_IMPORTED_MODULE_7__.useMediaQuery)({
+    query: '(min-width: 600px)'
+  });
+  _inertiajs_progress__WEBPACK_IMPORTED_MODULE_4__.InertiaProgress.init({
+    color: 'red',
+    showSpinner: true
+  });
+  var columns = [{
+    name: 'Station',
+    selector: function selector(row) {
+      return row.name_en;
+    },
+    sortable: true
+  }, {
+    name: 'Capacity',
+    selector: function selector(row) {
+      return row.capacity;
+    },
+    sortable: true
+  }, {
+    name: 'Address',
+    selector: function selector(row) {
+      return row.address_fi;
+    },
+    sortable: true
+  }, {
+    name: 'City',
+    selector: function selector(row) {
+      return row.city_fi;
+    },
+    sortable: true
+  }, {
+    name: 'Location',
+    selector: function selector(row) {
+      return "".concat(row.lat, " ").concat(row["long"]);
+    }
+  }];
+  var smallScreenColumns = [{
+    cell: function cell(row) {
+      var minutes = Math.floor(row.duration / 60);
+      var seconds = row.duration - minutes * 60;
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        "class": "w-full flex items-stretch py-1 text-lg",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          "class": "flex flex-col justify-between text-center ",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            "class": "font-bold text-green-900 ml-1",
+            children: dayjs__WEBPACK_IMPORTED_MODULE_1___default()(row.departure).format('HH:mm')
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            "class": "font-bold text-rose-900 ml-1",
+            children: dayjs__WEBPACK_IMPORTED_MODULE_1___default()(row["return"]).format('HH:mm')
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          "class": "flex flex-col justify-between px-1",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__.FontAwesomeIcon, {
+            icon: "location-dot",
+            "class": "w-7 h-7 mx-2 text-green-500 z-10"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            "class": "bg-white w-[2px] left-[93px] top-5 h-[calc(100%-50px)] absolute"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_5__.FontAwesomeIcon, {
+            icon: "location-dot",
+            "class": "w-7 h-7 mx-2 text-rose-500 z-10"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          "class": "flex-1",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            "class": "font-bold text-green-900 uppercase",
+            children: row.departure_station_name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            "class": "flex items-center justify-between",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              "class": "font-bold ",
+              children: "Date"
+            }), dayjs__WEBPACK_IMPORTED_MODULE_1___default()(row.departure).isSame(row["return"], 'd') ? dayjs__WEBPACK_IMPORTED_MODULE_1___default()(row.departure).format('D.M.YYYY') : "".concat(dayjs__WEBPACK_IMPORTED_MODULE_1___default()(row.departure).format('D.M.'), " - ").concat(dayjs__WEBPACK_IMPORTED_MODULE_1___default()(row["return"]).format('D.M.YYYY'))]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            "class": "flex items-center justify-between",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              "class": "font-bold ",
+              children: "Distance"
+            }), "".concat(parseFloat(row.covered_distance / 1000).toFixed(2), " km")]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            "class": "flex items-center justify-between",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              "class": "font-bold ",
+              children: "Duration"
+            }), "".concat(minutes, "min ").concat(seconds, "s")]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            "class": "font-bold text-rose-900 uppercase",
+            children: row.return_station_name
+          })]
+        })]
+      });
+    }
+  }];
+  (0,react_data_table_component__WEBPACK_IMPORTED_MODULE_2__.createTheme)('solarized', {
+    text: {
+      primary: '#000',
+      secondary: '#333'
+    },
+    background: {
+      "default": '#fcbd1a'
+    },
+    context: {
+      background: '#cb4b16',
+      text: '#FFFFFF'
+    },
+    divider: {
+      "default": '#073642'
+    },
+    action: {
+      button: 'rgba(0,0,0,.54)',
+      hover: 'rgba(0,0,0,.08)',
+      disabled: 'rgba(0,0,0,.12)'
+    }
+  }, 'dark');
+  console.log(data, 'wow');
+
+  var onChangePage = function onChangePage(page) {
+    _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_3__.Inertia.visit("".concat(data.path, "/?page=").concat(page));
+  };
+
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+    children: !!data && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_data_table_component__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      columns: isBigScreen ? columns : smallScreenColumns,
+      data: data.data,
+      theme: "solarized",
+      pagination: true,
+      paginationPerPage: 10,
+      paginationTotalRows: data.total,
+      paginationServer: true,
+      paginationComponentOptions: {
+        noRowsPerPage: true
+      },
+      paginationDefaultPage: data.current_page,
+      onChangePage: onChangePage,
+      noTableHead: !isBigScreen
+    })
+  });
+};
+
+Stations.propTypes = {
+  data: (prop_types__WEBPACK_IMPORTED_MODULE_8___default().object.isRequired)
+};
+Stations.defaultProps = {};
+Stations.displayName = 'Stations';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Stations);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Trips.jsx":
 /*!**************************************!*\
-  !*** ./resources/js/Pages/Index.jsx ***!
+  !*** ./resources/js/Pages/Trips.jsx ***!
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -19156,7 +19347,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var Index = function Index(_ref) {
+var Trips = function Trips(_ref) {
   var data = _ref.data;
   var isBigScreen = (0,react_responsive__WEBPACK_IMPORTED_MODULE_7__.useMediaQuery)({
     query: '(min-width: 600px)'
@@ -19333,12 +19524,12 @@ var Index = function Index(_ref) {
   });
 };
 
-Index.propTypes = {
+Trips.propTypes = {
   data: (prop_types__WEBPACK_IMPORTED_MODULE_8___default().object.isRequired)
 };
-Index.defaultProps = {};
-Index.displayName = 'Index';
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
+Trips.defaultProps = {};
+Trips.displayName = 'Trips';
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Trips);
 
 /***/ }),
 
@@ -19422,10 +19613,10 @@ function Welcome(props) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                   className: "ml-4 text-lg leading-7 font-semibold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laravel.com/docs",
-                    className: "underline text-gray-900 dark:text-white",
-                    children: "Documentation"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                    href: "/trips",
+                    "class": "underline text-gray-900 dark:text-white",
+                    children: "Trips"
                   })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -19453,11 +19644,11 @@ function Welcome(props) {
                     d: "M15 13a3 3 0 11-6 0 3 3 0 016 0z"
                   })]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-                  className: "ml-4 text-lg leading-7 font-semibold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
-                    href: "https://laracasts.com",
-                    className: "underline text-gray-900 dark:text-white",
-                    children: "Laracasts"
+                  "class": "ml-4 text-lg leading-7 font-semibold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                    href: "/stations",
+                    "class": "underline text-gray-900 dark:text-white",
+                    children: "Stations"
                   })
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -76391,8 +76582,10 @@ var map = {
 	"./Auth/VerifyEmail.jsx": "./resources/js/Pages/Auth/VerifyEmail.jsx",
 	"./Dashboard": "./resources/js/Pages/Dashboard.jsx",
 	"./Dashboard.jsx": "./resources/js/Pages/Dashboard.jsx",
-	"./Index": "./resources/js/Pages/Index.jsx",
-	"./Index.jsx": "./resources/js/Pages/Index.jsx",
+	"./Stations": "./resources/js/Pages/Stations.jsx",
+	"./Stations.jsx": "./resources/js/Pages/Stations.jsx",
+	"./Trips": "./resources/js/Pages/Trips.jsx",
+	"./Trips.jsx": "./resources/js/Pages/Trips.jsx",
 	"./Welcome": "./resources/js/Pages/Welcome.jsx",
 	"./Welcome.jsx": "./resources/js/Pages/Welcome.jsx"
 };
