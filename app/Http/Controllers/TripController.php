@@ -9,8 +9,8 @@ class TripController extends Controller
 {
     public function index()
     {
-        return Inertia::render('Index', [
-            'data' => Trip::paginate(20)->toArray(),
+        return Inertia::render('Trips', [
+            'data' => Trip::paginate(10)->toArray(),
         ]);
     }
 }
