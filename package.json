@@ -33,6 +33,8 @@
         "@fortawesome/free-solid-svg-icons": "^6.1.1",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "dayjs": "^1.11.3",
+        "lodash.debounce": "^4.0.8",
+        "lodash.pickby": "^4.6.0",
         "prop-types": "^15.8.1",
         "react-data-table-component": "^7.5.2",
         "react-responsive": "^9.0.0-beta.10",

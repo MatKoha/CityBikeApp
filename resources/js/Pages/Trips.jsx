@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
 import DataTable, { createTheme } from 'react-data-table-component';
@@ -6,13 +6,26 @@ import { Inertia } from '@inertiajs/inertia';
 import { InertiaProgress } from '@inertiajs/progress';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useMediaQuery } from 'react-responsive';
+import pickBy from 'lodash/pickBy'
 
-const Trips = ({ data }) => {
+const Trips = ({ data, stations }) => {
+  const [filters, setFilters] = useState({
+    departure: '',
+    return: '',
+    from: '',
+    to: '',
+    min_time: '',
+    max_time: '',
+    min_d: '',
+    max_d: '',
+  });
   const isBigScreen = useMediaQuery({ query: '(min-width: 600px)' });
+
   InertiaProgress.init({
     color: 'red',
     showSpinner: true,
   })
+
   const columns = [
     {
       name: 'Departure',
@@ -125,13 +138,124 @@ const Trips = ({ data }) => {
     },
   }, 'dark');
 
-  console.log(data, 'wow');
-
   const onChangePage = page => {
-    Inertia.visit(`${data.path}/?page=${page}`);
+    if (page === 1) return Inertia.visit(data.first_page_url);
+    if (page === data.last_page) return Inertia.visit(data.last_page_url);
+    if (page < data.current_page) return Inertia.visit(data.prev_page_url);
+    if (page > data.current_page) return Inertia.visit(data.next_page_url);
   }
+
+  const handleFilterChange = key => e => {
+    setFilters({ ...filters, [key]: e.target.value });
+  }
+
+  const handleSubmitFilters = () => {
+    Inertia.get('/trips', pickBy(filters), { preserveState: true });
+  }
+
   return (
     <div>
+      <div class='p-4' >
+        <div class='py-2'>
+          <div class='font-bold text-lg'>Date</div>
+          <div class='flex'>
+            <div class='flex flex-col'>
+              <label>Departure</label>
+              <input
+                type="date"
+                value={filters.departure}
+                min="2021-05-01"
+                max="2021-07-31"
+                onChange={handleFilterChange('departure')}
+              />
+            </div>
+            <div class='flex flex-col ml-4'>
+              <label>Return</label>
+              <input
+                type="date"
+                value={filters.return}
+                min="2021-05-01"
+                max="2021-07-31"
+                onChange={handleFilterChange('return')}
+              />
+            </div>
+          </div>
+        </div>
+        <div class='py-2'>
+          <div class='font-bold text-lg'>Station</div>
+          <div class='flex'>
+            <div class='flex flex-col'>
+              <label>From</label>
+              <select class='w-40' value={filters.from} onChange={handleFilterChange('from')}>
+                <option value='' />
+                {stations.map(s => (
+                  <option key={s.id} value={s.id}>{s.name_en}</option>
+                ))}
+              </select>
+            </div>
+            <div class='flex flex-col ml-4'>
+              <label>To</label>
+              <select class='w-40' value={filters.to} onChange={handleFilterChange('to')}>
+                <option value='' />
+                {stations.map(s => (
+                  <option key={s.id} value={s.id}>{s.name_en}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class='py-2'>
+          <div class='font-bold text-lg'>Duration</div>
+          <div class='flex'>
+            <div class='flex flex-col'>
+              <label>Min</label>
+              <input
+                class='w-20'
+                type="number"
+                value={filters.min_time}
+                min={0}
+                onChange={handleFilterChange('min_time')}
+              />
+            </div>
+            <div class='flex flex-col ml-4'>
+              <label>Max</label>
+              <input
+                class='w-20'
+                type="number"
+                value={filters.max_time}
+                min={0}
+                onChange={handleFilterChange('max_time')}
+              />
+            </div>
+          </div>
+        </div>
+        <div class='py-2'>
+          <div class='font-bold text-lg'>Distance</div>
+          <div class='flex'>
+            <div class='flex flex-col'>
+              <label>Min</label>
+              <input
+                class='w-20'
+                type="number"
+                value={filters.min_d}
+                min={0}
+                onChange={handleFilterChange('min_d')}
+              />
+            </div>
+            <div class='flex flex-col ml-4'>
+              <label>Max</label>
+              <input
+                class='w-20'
+                type="number"
+                value={filters.max_d}
+                min={0}
+                onChange={handleFilterChange('max_d')}
+              />
+            </div>
+          </div>
+        </div>
+        <button class='py-2' onClick={handleSubmitFilters}>Submit</button>
+      </div>
       {!!data && (
         <DataTable
           columns={isBigScreen ? columns : smallScreenColumns}

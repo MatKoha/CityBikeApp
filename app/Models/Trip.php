@@ -19,4 +19,13 @@ class Trip extends Model
         'covered_distance',
         'duration',
     ];
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['max_time'] ?? null, function ($query, $time) {
+            $query->where('duration', '<', $time);
+        })->when($filters['min_time'] ?? null, function ($query, $time) {
+            $query->where('duration', '>', $time);
+        });
+    }
 }
