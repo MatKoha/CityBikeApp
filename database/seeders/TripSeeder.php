@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Trip;
+use Carbon\Carbon;
 
 class TripSeeder extends Seeder
 {
@@ -33,8 +34,8 @@ class TripSeeder extends Seeder
                     if ($data[6] > 10 && $data[7] > 10) {
                         $entries++;
                         $tripArray[] = array(
-                            'departure' => $data[0],
-                            'return' => $data[1],
+                            'departure' => Carbon::create($data[0])->toDateTimeString(),
+                            'return' => Carbon::create($data[1])->toDateTimeString(),
                             'departure_station_id' => $data[2],
                             'departure_station_name' => $data[3],
                             'return_station_id' => $data[4],
